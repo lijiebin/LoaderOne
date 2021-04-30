@@ -14,7 +14,7 @@ Download the `LoaderOne` source code floder placed it in your project dir anywhe
 PHP 5.3+
 
 ## Specification
-1  Keep the "Namespace" completely mapping the actual directory's hierarchy.
+1. Keep the "Namespace" completely mapping the actual directory's hierarchy.
 
 2. Keep the "Class" and "Namespace" naming & capitalized same as the located directories name.
 
