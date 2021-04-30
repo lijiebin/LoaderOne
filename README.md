@@ -11,8 +11,7 @@ A better PHP class file autoloader library than PSR.
 Download the `LoaderOne` source code floder placed it in your project dir anywhere, commonly at project root dir is ok.
 - Setting the third-party "Class" lookup paths of the project dir in `find_path.php` (.e.g: Assume a thrid-party class fully qualified class is `\Acme\Log\Writer\File_Writer`, and you can place it at "Vendors" or "Library" or whatever else dir, so you need specify for this case.)
 - Add below code in your entry PHP file, commonly is `index.php`.
-- 
-```
+ ```
 ...
 
 define('BASE_DIR', __DIR__);
