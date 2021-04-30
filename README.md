@@ -22,6 +22,7 @@ $autoLoader->setBasePath(BASE_DIR);
 ...
 
 ```
+- Allow `LoaderOne` dir can writeable.
 
 ## Required
 PHP 5.3+
