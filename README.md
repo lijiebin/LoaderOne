@@ -12,7 +12,7 @@ Download the `LoaderOne` source code floder placed it in your project dir anywhe
 - Setting the third-party "Class" lookup paths of the project dir in `find_path.php` (.e.g: Assume a thrid-party class fully qualified class is `\Acme\Log\Writer\File_Writer`, and you can place it at "Vendors" or "Library" or whatever else dir, so you need specify for this case.)
 
 - Add below code in your entry PHP file, commonly is `index.php`.
- ```
+ ```PHP
 ...
 
 define('BASE_DIR', __DIR__);
