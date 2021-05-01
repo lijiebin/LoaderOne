@@ -15,9 +15,9 @@ Download the `LoaderOne` source code floder placed it in your project dir anywhe
  ```PHP
 ...
 
-define('BASE_DIR', __DIR__);
+
 $autoLoader = include_once 'LoaderOne\Autoloader.php';
-$autoLoader->setBasePath(BASE_DIR);
+$autoLoader->setBasePath(`YOUE_PROJECT_BASE_DIR);
 
 ...
 
