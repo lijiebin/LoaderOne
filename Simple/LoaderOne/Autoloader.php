@@ -56,8 +56,6 @@ class Autoloader
         
         $filePath = $this->basePath . DIRECTORY_SEPARATOR . $class . '.php';
         
-        var_dump(self::$namspace2dirCache, $class, $this->namspace2dirCacheMissing);
-        
         if ( ! is_file($filePath) ) {
             foreach ($this->findPaths as $path) {
                 $namespaceBasePath = $path;
