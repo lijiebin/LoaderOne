@@ -7,6 +7,7 @@
  * 
  */
 
+
 namespace LoaderOne;
 
 class Autoloader
@@ -21,7 +22,7 @@ class Autoloader
     
     private static $namspace2dir = [];
     
-    private static $namspace2dirCache = null;
+    private static $namspace2dirCache = [];
     
     public function __construct()
     {
@@ -53,7 +54,6 @@ class Autoloader
             $this->namspace2dirCacheMissing[] = $classNamespace; 
         }
         
-        $namespaceBasePath = DIRECTORY_SEPARATOR;
         $filePath = $this->basePath . DIRECTORY_SEPARATOR . $class . '.php';
         
         if ( ! is_file($filePath) ) {
@@ -73,7 +73,7 @@ class Autoloader
         }
         
         if ( ! is_file($filePath)) {
-            throw new \Exception("Class File : `{$class}` not be found, please check.");
+            throw new \Exception("Class File : `{$class}` not be found at '{$filePath}', please check.");
         }
         
         return $this->include($filePath);
@@ -81,22 +81,23 @@ class Autoloader
     
     private function getClassMappingCache($namespace)
     {
-        if ( ! file_exists($this->namspace2dirCacheFilePath)) return null;
+        if ( ! file_exists($this->namspace2dirCacheFilePath)) return [];
         
         if ( ! self::$namspace2dirCache) self::$namspace2dirCache = $this->include($this->namspace2dirCacheFilePath);
         
         if (isset(self::$namspace2dirCache[$namespace])) return self::$namspace2dirCache[$namespace];
         
-        return null;
+        return [];
     }
     
     public function __destruct()
     {
         if ( ! $this->namspace2dirCacheMissing) return;
         
+        $cacheContent = array_merge(self::$namspace2dirCache, self::$namspace2dir);
         file_put_contents(
             $this->namspace2dirCacheFilePath, 
-            "<?php \r\n return " . var_export(self::$namspace2dir, true) . ';'
+            "<?php \r\n return " . var_export( $cacheContent, true) . ';'
         );
     }
     
