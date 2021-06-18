@@ -24,9 +24,11 @@ class Autoloader
     
     private static $namspace2dirCache = [];
     
+    private static $_instance;
+    
     public function __construct()
     {
-        $this->findPaths = $this->include("find_path.php");
+        self::$_instance = $this;
         
         $this->namspace2dirCacheFilePath = __DIR__ . DIRECTORY_SEPARATOR . $this->namspace2dirCacheFile;
     }
@@ -34,6 +36,8 @@ class Autoloader
     public function setBasePath($path)
     {
         $this->basePath = $path;
+        
+        $this->findPaths = $this->include("find_path.php");
     }
     
     public function run($class)
@@ -106,9 +110,21 @@ class Autoloader
         return include_once($file);
     }
     
+    public function basePath()
+    {
+        return $this->basePath;
+    }
+    
+    public static function getInstance()
+    {
+        if ( ! self::$_instance) self::$_instance = new self();
+        
+        return self::$_instance;
+    }
 }
 
-$autoloader = new Autoloader();
-spl_autoload_register([$autoloader, 'run']);
+$autoLoader = Autoloader::getInstance();
 
-return $autoloader;
+spl_autoload_register([$autoLoader, 'run']);
+
+return $autoLoader;
